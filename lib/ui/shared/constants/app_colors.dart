@@ -11,6 +11,7 @@ class AppColors {
   static const hintGrey = Color(0XFF949C9E);
   static const textBlack = Color(0XFF323238);
   static const red = Color(0XFFF34642);
+  static const borderGrey = Color(0XFFE5E5E5);
 
   // Neutral Colors
   static const white = Color(0XFFFFFFFF);

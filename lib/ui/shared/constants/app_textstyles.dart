@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTextStyles {
-  static const roboto = "Roboto";
+  static const roboto = 'Roboto';
 
   static TextStyle dynamic(
     double size, {
@@ -57,12 +57,12 @@ class AppTextStyles {
   //   // color: AppColors.lightColor2,
   // );
 
-  // /// Default color - Lightcolor2
-  // static final regular16 = TextStyle(
-  //   fontSize: 16.spMin,
-  //   fontWeight: FontWeight.normal,
-  //   // color: AppColors.lightColor2,
-  // );
+  /// Default color - Lightcolor2
+  static final regular16 = TextStyle(
+    fontSize: 16.spMin,
+    fontWeight: FontWeight.normal,
+    // color: AppColors.lightColor2,
+  );
 
   // // Medium
   // /// Default color - DeepBlue2
@@ -79,13 +79,13 @@ class AppTextStyles {
   //   height: 1.3,
   // );
 
-  // /// Default color - DarkColor1
-  // static final medium14 = TextStyle(
-  //   fontSize: 14.spMin,
-  //   fontWeight: FontWeight.w500,
-  //   height: 1.4,
-  //   // color: AppColors.darkColor1,
-  // );
+  /// Default color - DarkColor1
+  static final medium14 = TextStyle(
+    fontSize: 14.spMin,
+    fontWeight: FontWeight.w500,
+    height: 1.4,
+    // color: AppColors.darkColor1,
+  );
 
   // /// Default color - DarkColor1
   // static final medium16 = TextStyle(

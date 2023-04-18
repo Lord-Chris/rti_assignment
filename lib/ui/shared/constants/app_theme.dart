@@ -19,6 +19,9 @@ class AppTheme {
     expansionTileTheme: const ExpansionTileThemeData(
       tilePadding: EdgeInsets.symmetric(vertical: 4),
     ),
+    dividerTheme: const DividerThemeData(
+      color: AppColors.borderGrey,
+    ),
     colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue).copyWith(
       background: AppColors.background,
     ),
