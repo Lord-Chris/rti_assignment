@@ -94,12 +94,12 @@ class AppTextStyles {
   //   // color: AppColors.darkColor1,
   // );
 
-  // /// Default color - DarkColor1
-  // static final medium18 = TextStyle(
-  //   fontSize: 18.spMin,
-  //   fontWeight: FontWeight.w500,
-  //   // color: AppColors.darkColor1,
-  // );
+  /// Default color - DarkColor1
+  static final medium18 = TextStyle(
+    fontSize: 18.spMin,
+    fontWeight: FontWeight.w500,
+    // color: AppColors.darkColor1,
+  );
 
   // /// Default color - DarkColor1
   // static final medium24 = TextStyle(
