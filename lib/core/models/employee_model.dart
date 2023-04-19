@@ -1,17 +1,18 @@
 import 'dart:convert';
 
+import 'package:equatable/equatable.dart';
 import 'package:intl/intl.dart';
 
 import '../enums/role_type_enum.dart';
 
-class EmployeeModel {
+class EmployeeModel extends Equatable {
   final String id;
   final String name;
   final RoleTypeEnum role;
   final DateTime startDate;
   final DateTime? endDate;
 
-  EmployeeModel({
+  const EmployeeModel({
     required this.id,
     required this.name,
     required this.role,
@@ -65,4 +66,14 @@ class EmployeeModel {
       endDate == null ? null : DateFormat('d MMM yyyy').format(endDate!);
   String get endDateParse2 =>
       endDate == null ? '' : DateFormat('d MMM, yyyy').format(endDate!);
+
+  @override
+  List<Object> get props {
+    return [
+      id,
+      name,
+      role,
+      startDate,
+    ];
+  }
 }

@@ -17,5 +17,6 @@ import '../ui/views/employees_list_view/employees_list_view.dart';
   dependencies: [
     LazySingleton(classType: NavigationService),
   ],
+  logger: StackedLogger(),
 )
 class AppSetup {}

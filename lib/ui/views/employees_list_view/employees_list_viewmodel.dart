@@ -13,6 +13,15 @@ class EmployeesListViewModel extends BaseViewModel {
     notifyListeners();
   }
 
+  Future<void> viewEmployee(EmployeeModel employee) async {
+    final res = await _navigationService.navigateTo(
+      Routes.addEmployeeView,
+      arguments: AddEmployeeViewArguments(employee: employee),
+    );
+    if (res != null) employees.add(res);
+    notifyListeners();
+  }
+
   void deleteEmployee(EmployeeModel employee) {}
 
   List<EmployeeModel> get currentEmplyees =>

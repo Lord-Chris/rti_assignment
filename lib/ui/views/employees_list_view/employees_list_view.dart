@@ -117,45 +117,48 @@ class _EmployeeItem extends ViewModelWidget<EmployeesListViewModel> {
 
   @override
   Widget build(BuildContext context, EmployeesListViewModel viewModel) {
-    return Dismissible(
-      key: Key(employee.id),
-      onDismissed: (direction) => viewModel.deleteEmployee(employee),
-      direction: DismissDirection.endToStart,
-      background: Container(
-        padding: REdgeInsets.only(right: 20),
-        color: AppColors.red,
-        alignment: Alignment.centerRight,
-        child: SvgPicture.asset(AppAssets.delete),
-      ),
-      child: Container(
-        width: double.infinity,
-        color: AppColors.white,
-        padding: REdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              employee.name,
-              style: AppTextStyles.medium16,
-            ),
-            const Spacing(height: 6),
-            Text(
-              employee.role.name,
-              style: AppTextStyles.regular14.copyWith(
-                color: AppColors.hintGrey,
+    return InkWell(
+      onTap: () => viewModel.viewEmployee(employee),
+      child: Dismissible(
+        key: Key(employee.id),
+        onDismissed: (direction) => viewModel.deleteEmployee(employee),
+        direction: DismissDirection.endToStart,
+        background: Container(
+          padding: REdgeInsets.only(right: 20),
+          color: AppColors.red,
+          alignment: Alignment.centerRight,
+          child: SvgPicture.asset(AppAssets.delete),
+        ),
+        child: Container(
+          width: double.infinity,
+          color: AppColors.white,
+          padding: REdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                employee.name,
+                style: AppTextStyles.medium16,
               ),
-            ),
-            const Spacing(height: 6),
-            Text(
-              employee.endDate == null
-                  ? 'From ${employee.startDateParse2}'
-                  : '${employee.startDateParse2} - ${employee.endDateParse2}',
-              style: AppTextStyles.regular12.copyWith(
-                color: AppColors.hintGrey,
+              const Spacing(height: 6),
+              Text(
+                employee.role.name,
+                style: AppTextStyles.regular14.copyWith(
+                  color: AppColors.hintGrey,
+                ),
               ),
-            )
-          ],
+              const Spacing(height: 6),
+              Text(
+                employee.endDate == null
+                    ? 'From ${employee.startDateParse2}'
+                    : '${employee.startDateParse2} - ${employee.endDateParse2}',
+                style: AppTextStyles.regular12.copyWith(
+                  color: AppColors.hintGrey,
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
