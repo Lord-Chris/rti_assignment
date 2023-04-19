@@ -134,9 +134,7 @@ class DateSelectorDialog extends HookWidget {
                 centerAlignModePicker: true,
                 disableModePicker: true,
                 selectableDayPredicate: (day) {
-                  return isStart ||
-                      ((startDate?.isBefore(day) ?? true) &&
-                          DateTime.now().isAfter(day));
+                  return isStart || (startDate?.isBefore(day) ?? true);
                 },
                 weekdayLabels: [
                   'Sun',
