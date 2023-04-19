@@ -86,6 +86,7 @@ class AppTextField extends StatelessWidget {
       expands: expands,
       maxLines: maxLines,
       validator: validator,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       minLines: minLines,
       // maxLength: maxLength,
       inputFormatters: [
@@ -138,7 +139,12 @@ class AppTextField extends StatelessWidget {
   static InputDecoration kOutlineDecoration() => InputDecoration(
         contentPadding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 10.w),
         isDense: true,
-        border: const UnderlineInputBorder(),
+        border: const OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.borderGrey),
+        ),
+        errorBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.red),
+        ),
         enabledBorder: const OutlineInputBorder(
           borderSide: BorderSide(color: AppColors.borderGrey),
         ),
@@ -209,6 +215,7 @@ class AppDropdownField<T extends Object> extends StatelessWidget {
       isExpanded: true,
       onChanged: onChanged,
       validator: validator,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       value: value,
       focusNode: focusNode,
       icon: Icon(
