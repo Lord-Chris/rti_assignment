@@ -16,10 +16,10 @@ class AddEmployeeViewModel extends BaseViewModel {
   DateTime? start;
   DateTime? end;
 
-  void init(EmployeeModel employee) {
-    id = employee.id;
-    start = employee.startDate;
-    end = employee.endDate;
+  void init(EmployeeModel? employee) {
+    id = employee?.id;
+    start = employee?.startDate ?? DateTime.now();
+    end = employee?.endDate;
   }
 
   void onCancelTap() {
@@ -32,7 +32,7 @@ class AddEmployeeViewModel extends BaseViewModel {
         id: id ?? const Uuid().v4(),
         name: name,
         role: RoleTypeEnum.fromName(role),
-        startDate: start ?? DateTime.now(),
+        startDate: start!,
         endDate: end,
       );
       if (id == null) {

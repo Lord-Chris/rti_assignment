@@ -84,7 +84,7 @@ class EmployeesListView extends StatelessWidget {
                     itemCount: viewModel.previousEmplyees.length,
                     separatorBuilder: (_, __) => const Divider(height: 1),
                     itemBuilder: (context, index) {
-                      final employee = viewModel.currentEmplyees[index];
+                      final employee = viewModel.previousEmplyees[index];
                       return _EmployeeItem(employee: employee);
                     },
                   ),
@@ -150,7 +150,7 @@ class _EmployeeItem extends ViewModelWidget<EmployeesListViewModel> {
               ),
               const Spacing(height: 6),
               Text(
-                employee.endDate == null
+                employee.endDateParse2.isEmpty
                     ? 'From ${employee.startDateParse2}'
                     : '${employee.startDateParse2} - ${employee.endDateParse2}',
                 style: AppTextStyles.regular12.copyWith(

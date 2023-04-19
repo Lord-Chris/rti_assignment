@@ -155,6 +155,9 @@ class AppTextField extends StatelessWidget {
         labelStyle: AppTextStyles.regular16.copyWith(
           color: AppColors.hintGrey,
         ),
+        hintStyle: AppTextStyles.regular16.copyWith(
+          color: AppColors.hintGrey,
+        ),
       );
 }
 

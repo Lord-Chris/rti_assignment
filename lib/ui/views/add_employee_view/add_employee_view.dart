@@ -5,8 +5,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../core/extensions/validator_extension.dart';
-import '../../../core/models/employee_model.dart';
 import '../../shared/bottom_sheets/role_list_sheet.dart';
 import '../../shared/components/_components.dart';
 import '../../shared/constants/app_assets.dart';
@@ -24,6 +22,11 @@ class AddEmployeeView extends HookWidget {
     this.employee,
   });
 
+  // String getStartDate(DateTime date) {
+  //   if (date.compareExactDay(DateTime.now())) return 'Today';
+  //   return date
+  // }
+
   @override
   Widget build(BuildContext context) {
     final nameController = useTextEditingController(text: employee?.name);
@@ -36,6 +39,7 @@ class AddEmployeeView extends HookWidget {
     ///
     return ViewModelBuilder<AddEmployeeViewModel>.nonReactive(
       viewModelBuilder: () => AddEmployeeViewModel(),
+      onViewModelReady: (viewModel) => viewModel.init(employee),
       builder: (context, viewModel, child) {
         return Scaffold(
           appBar: AppBar(
@@ -62,6 +66,7 @@ class AddEmployeeView extends HookWidget {
                       AppTextField(
                         prefix: SvgPicture.asset(AppAssets.work),
                         label: 'Select role',
+                        hint: 'Select role',
                         controller: roleController,
                         readOnly: true,
                         validator: context.validateNotEmpty,
@@ -80,7 +85,7 @@ class AddEmployeeView extends HookWidget {
                           Expanded(
                             child: AppTextField(
                               prefix: SvgPicture.asset(AppAssets.event),
-                              label: 'Select role',
+                              label: 'Today',
                               readOnly: true,
                               controller: startController,
                               validator: context.validateNotEmpty,
@@ -94,8 +99,10 @@ class AddEmployeeView extends HookWidget {
                                 );
                                 if (res == null) return;
                                 viewModel.start = res;
-                                startController.text =
-                                    DateFormat('d MMM yyyy').format(res);
+                                startController.text = (res as DateTime)
+                                        .compareExactDay(DateTime.now())
+                                    ? 'Today'
+                                    : DateFormat('d MMM yyyy').format(res);
                               },
                             ),
                           ),
@@ -112,15 +119,20 @@ class AddEmployeeView extends HookWidget {
                               onTap: () async {
                                 final res = await showDialog(
                                   context: context,
-                                  builder: (context) =>
-                                      const DateSelectorDialog(
+                                  builder: (context) => DateSelectorDialog(
+                                    startDate: viewModel.start,
                                     isStart: false,
                                   ),
                                 );
                                 if (res == null) return;
-                                viewModel.end = res;
-                                endController.text =
-                                    DateFormat('d MMM yyyy').format(res);
+                                if ((res as DateTime) == viewModel.start!) {
+                                  viewModel.end = null;
+                                  endController.clear();
+                                } else {
+                                  viewModel.end = res;
+                                  endController.text =
+                                      DateFormat('d MMM yyyy').format(res);
+                                }
                               },
                             ),
                           ),

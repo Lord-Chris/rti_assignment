@@ -39,5 +39,5 @@ class EmployeesListViewModel extends BaseViewModel {
   List<EmployeeModel> get currentEmplyees =>
       employees.where((employee) => employee.endDate == null).toList();
   List<EmployeeModel> get previousEmplyees =>
-      employees.where((employee) => employee.endDate != null).toList();
+      employees.where((employee) => employee.endDateParse2.isNotEmpty).toList();
 }

@@ -4,6 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:intl/intl.dart';
 
 import '../enums/role_type_enum.dart';
+import '../extensions/datetime_extension.dart';
 
 class EmployeeModel extends Equatable {
   final String id;
@@ -60,7 +61,9 @@ class EmployeeModel extends Equatable {
     );
   }
 
-  String get startDateParse => DateFormat('d MMM yyyy').format(startDate);
+  String get startDateParse => startDate.compareExactDay(DateTime.now())
+      ? 'Today'
+      : DateFormat('d MMM yyyy').format(startDate);
   String get startDateParse2 => DateFormat('d MMM, yyyy').format(startDate);
   String? get endDateParse =>
       endDate == null ? null : DateFormat('d MMM yyyy').format(endDate!);

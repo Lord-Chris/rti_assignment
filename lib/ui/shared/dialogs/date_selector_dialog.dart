@@ -5,17 +5,22 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 
+import '../../../core/_core.dart';
 import '../components/_components.dart';
 import '../constants/app_assets.dart';
 import '../constants/app_colors.dart';
 import '../constants/app_textstyles.dart';
 import '../constants/spacing.dart';
 
+export '../../../core/_core.dart';
+
 class DateSelectorDialog extends HookWidget {
+  final DateTime? startDate;
   final bool isStart;
 
   const DateSelectorDialog({
     super.key,
+    this.startDate,
     required this.isStart,
   });
 
@@ -125,6 +130,10 @@ class DateSelectorDialog extends HookWidget {
                 lastDate: DateTime(2026),
                 centerAlignModePicker: true,
                 disableModePicker: true,
+                selectableDayPredicate: (day) {
+                  return (startDate?.isBefore(day) ?? true) &&
+                      DateTime.now().isAfter(day);
+                },
                 weekdayLabels: [
                   'Sun',
                   'Mon',
@@ -153,11 +162,13 @@ class DateSelectorDialog extends HookWidget {
                     child: Text(
                       date.day.toString(),
                       style: AppTextStyles.regular15.copyWith(
-                        color: isSelected ?? false
-                            ? AppColors.white
-                            : isToday ?? false
-                                ? AppColors.blue
-                                : null,
+                        color: isDisabled ?? false
+                            ? AppColors.borderGrey
+                            : isSelected ?? false
+                                ? AppColors.white
+                                : isToday ?? false
+                                    ? AppColors.blue
+                                    : null,
                       ),
                     ),
                   );
@@ -184,8 +195,10 @@ class DateSelectorDialog extends HookWidget {
                     child: Text(
                       selectedDate.value == null
                           ? 'No date'
-                          : DateFormat('d MMM yyyy')
-                              .format(selectedDate.value!),
+                          : selectedDate.value!.compareExactDay(DateTime.now())
+                              ? 'Today'
+                              : DateFormat('d MMM yyyy')
+                                  .format(selectedDate.value!),
                       style: AppTextStyles.regular16,
                     ),
                   ),
@@ -206,7 +219,13 @@ class DateSelectorDialog extends HookWidget {
                     height: 40.h,
                     width: 73.w,
                     padding: EdgeInsets.zero,
-                    onTap: () => Navigator.pop(context, selectedDate.value),
+                    onTap: () {
+                      if (isStart) {
+                        Navigator.pop(context, selectedDate.value);
+                      } else {
+                        Navigator.pop(context, selectedDate.value ?? startDate);
+                      }
+                    },
                   ),
                 ],
               ),
