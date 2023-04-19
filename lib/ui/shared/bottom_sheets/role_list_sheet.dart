@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../core/enums/role_type_enum.dart';
 import '../constants/app_textstyles.dart';
 
 class RoleListSheet extends StatelessWidget {
   const RoleListSheet({super.key});
-
-  static const roles = [
-    'Product Designer',
-    'Flutter Developer',
-    'QA Tester',
-    'Product Owner',
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -21,17 +15,17 @@ class RoleListSheet extends StatelessWidget {
       ),
       child: ListView.separated(
         shrinkWrap: true,
-        itemCount: roles.length,
+        itemCount: RoleTypeEnum.values.length,
         separatorBuilder: (_, __) => const Divider(height: 1),
         itemBuilder: (context, index) {
-          final role = roles[index];
+          final role = RoleTypeEnum.values[index];
           return InkWell(
-            onTap: () => Navigator.pop(context, role),
+            onTap: () => Navigator.pop(context, role.name),
             child: Padding(
               padding: REdgeInsets.all(16),
               child: Center(
                 child: Text(
-                  role,
+                  role.name,
                   style: AppTextStyles.regular16,
                 ),
               ),

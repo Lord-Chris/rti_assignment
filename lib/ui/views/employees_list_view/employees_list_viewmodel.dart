@@ -12,4 +12,11 @@ class EmployeesListViewModel extends BaseViewModel {
     if (res != null) employees.add(res);
     notifyListeners();
   }
+
+  void deleteEmployee(EmployeeModel employee) {}
+
+  List<EmployeeModel> get currentEmplyees =>
+      employees.where((employee) => employee.endDate == null).toList();
+  List<EmployeeModel> get previousEmplyees =>
+      employees.where((employee) => employee.endDate != null).toList();
 }

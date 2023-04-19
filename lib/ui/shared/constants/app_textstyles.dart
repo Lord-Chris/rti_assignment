@@ -34,12 +34,12 @@ class AppTextStyles {
   // );
 
   // /// Default color - Lightcolor2
-  // static final regular12 = TextStyle(
-  //   fontSize: 12.spMin,
-  //   fontWeight: FontWeight.normal,
-  //   height: 1.2,
-  //   // color: AppColors.lightColor2,
-  // );
+  static final regular12 = TextStyle(
+    fontSize: 12.spMin,
+    fontWeight: FontWeight.normal,
+    height: 1.2,
+    // color: AppColors.lightColor2,
+  );
 
   // /// Default color - Lightcolor2
   // static final regular13 = TextStyle(
@@ -48,6 +48,13 @@ class AppTextStyles {
   //   height: 1.3,
   //   // color: AppColors.lightColor2,
   // );
+
+  static final regular14 = TextStyle(
+    fontSize: 14.spMin,
+    fontWeight: FontWeight.normal,
+    height: 1.4,
+    // color: AppColors.lightColor2,
+  );
 
   // /// Default color - Lightcolor2
   static final regular15 = TextStyle(
@@ -88,11 +95,11 @@ class AppTextStyles {
   );
 
   // /// Default color - DarkColor1
-  // static final medium16 = TextStyle(
-  //   fontSize: 16.spMin,
-  //   fontWeight: FontWeight.w500,
-  //   // color: AppColors.darkColor1,
-  // );
+  static final medium16 = TextStyle(
+    fontSize: 16.spMin,
+    fontWeight: FontWeight.w500,
+    // color: AppColors.darkColor1,
+  );
 
   /// Default color - DarkColor1
   static final medium18 = TextStyle(

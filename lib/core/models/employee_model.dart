@@ -60,6 +60,9 @@ class EmployeeModel {
   }
 
   String get startDateParse => DateFormat('d MMM yyyy').format(startDate);
+  String get startDateParse2 => DateFormat('d MMM, yyyy').format(startDate);
   String? get endDateParse =>
       endDate == null ? null : DateFormat('d MMM yyyy').format(endDate!);
+  String get endDateParse2 =>
+      endDate == null ? '' : DateFormat('d MMM, yyyy').format(endDate!);
 }
