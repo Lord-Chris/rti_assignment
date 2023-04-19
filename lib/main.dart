@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'app/_app.dart';
 import 'ui/shared/constants/_constants.dart';
 
-void main() {
-  setupLocator();
+void main() async {
+  await setupLocator();
   runApp(const MyApp());
 }
 

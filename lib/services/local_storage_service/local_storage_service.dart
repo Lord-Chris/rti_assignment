@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:hive_flutter/hive_flutter.dart';
 
 import '../../app/_app.dart';
@@ -41,7 +43,7 @@ class LocalStorageService extends ILocalStorageService {
     try {
       assert(key.isNotEmpty, 'Box key must not be empty');
       final box = Hive.box(appBoxId);
-      return box.get(key, defaultValue: def) as T;
+      return jsonDecode(jsonEncode(box.get(key, defaultValue: def))) as T;
     } on Exception catch (e) {
       _logger.e(e);
       throw Failure(message: 'Something went wrong', extraData: e.toString());
