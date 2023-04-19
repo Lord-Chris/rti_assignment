@@ -29,12 +29,14 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  calendar_date_picker2: ^0.5.2
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
   flutter_hooks: ^0.18.6
   flutter_screenutil: ^5.7.0
   flutter_svg: ^2.0.5
+  intl: ^0.18.1
   stacked: ^3.2.1
   stacked_services: ^1.0.2
 

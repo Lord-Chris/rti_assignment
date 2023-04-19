@@ -50,12 +50,12 @@ class AppTextStyles {
   // );
 
   // /// Default color - Lightcolor2
-  // static final regular14 = TextStyle(
-  //   fontSize: 14.spMin,
-  //   fontWeight: FontWeight.normal,
-  //   height: 1.4,
-  //   // color: AppColors.lightColor2,
-  // );
+  static final regular15 = TextStyle(
+    fontSize: 15.spMin,
+    fontWeight: FontWeight.normal,
+    height: 1.4,
+    // color: AppColors.lightColor2,
+  );
 
   /// Default color - Lightcolor2
   static final regular16 = TextStyle(
