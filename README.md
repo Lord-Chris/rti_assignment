@@ -1,16 +1,31 @@
 # rti_assignment
 
-A new Flutter project.
+Assignment submission for RTI.
 
-## Getting Started
+## Summary
+### State management
+- Stacked [Provider]
 
-This project is a starting point for a Flutter application.
+### Util Packages
+- Flutter ScreenUtil
+- Flutter Hooks
+- Equatable
+- Logger
+- UUID
 
-A few resources to get you started if this is your first Flutter project:
+### Top Folder Structure
+- app
+- core
+    - enums
+    - extensions
+    - models
+- services
+- ui
+ - shared
+ - views
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Tests
+- Yes (For services only)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Thank you
+
