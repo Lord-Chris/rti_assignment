@@ -1,11 +1,12 @@
 import 'package:stacked/stacked.dart';
 
 import '../../../app/_app.dart';
-import '../../../core/models/employee_model.dart';
+import '../../../core/_core.dart';
 import '../../../services/employee_service/i_employee_service.dart';
 import '../../shared/components/_components.dart';
 
 class EmployeesListViewModel extends BaseViewModel {
+  final _logger = getLogger('EmployeesListViewModel');
   final _navigationService = locator<NavigationService>();
   final _employeeService = locator<IEmployeeService>();
 
@@ -25,14 +26,22 @@ class EmployeesListViewModel extends BaseViewModel {
   }
 
   void deleteEmployee(EmployeeModel employee) {
-    _employeeService.deleteEmployee(employee);
-    AppSnackbar.showDeleteSuccess(() => recoverEmployee(employee));
-    notifyListeners();
+    try {
+      _employeeService.deleteEmployee(employee);
+      AppSnackbar.showDeleteSuccess(() => recoverEmployee(employee));
+      notifyListeners();
+    } on Failure catch (e) {
+      _logger.e(e);
+    }
   }
 
   void recoverEmployee(EmployeeModel employee) {
-    _employeeService.recoverEmployee(employee);
-    notifyListeners();
+    try {
+      _employeeService.recoverEmployee(employee);
+      notifyListeners();
+    } on Failure catch (e) {
+      _logger.e(e);
+    }
   }
 
   List<EmployeeModel> get employees => _employeeService.employees;
