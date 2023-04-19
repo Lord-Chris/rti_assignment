@@ -92,8 +92,8 @@ class AddEmployeeView extends HookWidget {
                               onTap: () async {
                                 final res = await showDialog(
                                   context: context,
-                                  builder: (context) =>
-                                      const DateSelectorDialog(
+                                  builder: (context) => DateSelectorDialog(
+                                    currentDate: viewModel.start,
                                     isStart: true,
                                   ),
                                 );
@@ -120,6 +120,7 @@ class AddEmployeeView extends HookWidget {
                                 final res = await showDialog(
                                   context: context,
                                   builder: (context) => DateSelectorDialog(
+                                    currentDate: viewModel.end,
                                     startDate: viewModel.start,
                                     isStart: false,
                                   ),

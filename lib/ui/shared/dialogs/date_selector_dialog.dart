@@ -16,11 +16,13 @@ export '../../../core/_core.dart';
 
 class DateSelectorDialog extends HookWidget {
   final DateTime? startDate;
+  final DateTime? currentDate;
   final bool isStart;
 
   const DateSelectorDialog({
     super.key,
     this.startDate,
+    this.currentDate,
     required this.isStart,
   });
 
@@ -36,7 +38,8 @@ class DateSelectorDialog extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final selectedDate = useState<DateTime?>(isStart ? DateTime.now() : null);
+    final selectedDate =
+        useState<DateTime?>(currentDate ?? (isStart ? DateTime.now() : null));
     return Dialog(
       child: Material(
         color: AppColors.white,
@@ -131,8 +134,9 @@ class DateSelectorDialog extends HookWidget {
                 centerAlignModePicker: true,
                 disableModePicker: true,
                 selectableDayPredicate: (day) {
-                  return (startDate?.isBefore(day) ?? true) &&
-                      DateTime.now().isAfter(day);
+                  return isStart ||
+                      ((startDate?.isBefore(day) ?? true) &&
+                          DateTime.now().isAfter(day));
                 },
                 weekdayLabels: [
                   'Sun',
