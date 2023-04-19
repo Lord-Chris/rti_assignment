@@ -7,24 +7,28 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
+import 'package:mockito/mockito.dart';
+import 'package:rti_assignment/app/_app.dart';
 import 'package:rti_assignment/main.dart';
+import 'package:rti_assignment/services/employee_service/i_employee_service.dart';
+
+import 'mock_helper_test.mocks.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  setUp(() {
+    setupLocator();
+    locator.allowReassignment = true;
+
+    final mockEmployeeService = MockIEmployeeService();
+    when(mockEmployeeService.employees).thenReturn([]);
+    locator.registerSingleton<IEmployeeService>(mockEmployeeService);
+  });
+
+  testWidgets('Finds Add Icon', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const MyApp());
 
     // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(find.byIcon(Icons.add), findsOneWidget);
   });
 }

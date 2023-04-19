@@ -43,7 +43,7 @@ class EmployeeService extends IEmployeeService {
 
   @override
   List<EmployeeModel> get employees {
-    final res = _localStorageService.read<List>(employeesKey, def: []);
+    final res = _localStorageService.read<List>(employeesKey, def: []) as List;
     return (res)
         .map((e) => EmployeeModel.fromMap(e as Map<String, dynamic>))
         .toList();

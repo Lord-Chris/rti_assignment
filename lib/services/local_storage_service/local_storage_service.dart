@@ -39,7 +39,7 @@ class LocalStorageService extends ILocalStorageService {
   }
 
   @override
-  T read<T>(String key, {T? def}) {
+  T? read<T>(String key, {T? def}) {
     try {
       assert(key.isNotEmpty, 'Box key must not be empty');
       final box = Hive.box(appBoxId);
