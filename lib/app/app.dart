@@ -15,8 +15,6 @@ import '../ui/views/employees_list_view/employees_list_view.dart';
   routes: [
     AdaptiveRoute(page: EmployeesListView, initial: true),
     AdaptiveRoute(page: AddEmployeeView),
-    // AdaptiveRoute(page: AddEmployeeView),
-    // AdaptiveRoute(page: AddEmployeeView),
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),

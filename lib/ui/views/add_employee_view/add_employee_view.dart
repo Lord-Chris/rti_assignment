@@ -22,9 +22,6 @@ class AddEmployeeView extends HookWidget {
     this.employee,
   });
 
-  // String getStartDate(DateTime date) {
-  //   if (date.compareExactDay(DateTime.now())) return 'Today';
-  //   return date
   // }
 
   @override
