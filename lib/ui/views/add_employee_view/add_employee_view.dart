@@ -70,8 +70,9 @@ class AddEmployeeView extends HookWidget {
                             onTap: () async {
                               final res = await showDialog(
                                 context: context,
-                                builder: (context) =>
-                                    const DateSelectorDialog(),
+                                builder: (context) => const DateSelectorDialog(
+                                  isStart: true,
+                                ),
                               );
                               if (res == null) return;
                               startController.text =
@@ -86,9 +87,20 @@ class AddEmployeeView extends HookWidget {
                           child: AppTextField(
                             prefix: SvgPicture.asset(AppAssets.event),
                             label: 'No date',
+                            hint: 'No date',
                             readOnly: true,
                             controller: endController,
-                            onTap: () {},
+                            onTap: () async {
+                              final res = await showDialog(
+                                context: context,
+                                builder: (context) => const DateSelectorDialog(
+                                  isStart: false,
+                                ),
+                              );
+                              if (res == null) return;
+                              endController.text =
+                                  DateFormat('d MMM yyyy').format(res);
+                            },
                           ),
                         ),
                       ],

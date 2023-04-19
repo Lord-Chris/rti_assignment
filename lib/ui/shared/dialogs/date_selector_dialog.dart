@@ -12,7 +12,12 @@ import '../constants/app_textstyles.dart';
 import '../constants/spacing.dart';
 
 class DateSelectorDialog extends HookWidget {
-  const DateSelectorDialog({super.key});
+  final bool isStart;
+
+  const DateSelectorDialog({
+    super.key,
+    required this.isStart,
+  });
 
   DateTime get nextMonday {
     int daysUntilMonday = 8 - DateTime.now().weekday;
@@ -26,7 +31,7 @@ class DateSelectorDialog extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final selectedDate = useState<DateTime?>(null);
+    final selectedDate = useState<DateTime?>(isStart ? DateTime.now() : null);
     return Dialog(
       child: Material(
         color: AppColors.white,
@@ -41,49 +46,73 @@ class DateSelectorDialog extends HookWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: _ButtonItem(
-                          label: 'Today',
-                          value: DateTime.now(),
-                          groupValue: selectedDate.value,
-                          onTap: (day) => selectedDate.value = day,
+                  if (!isStart)
+                    Row(
+                      children: [
+                        Expanded(
+                          child: _ButtonItem(
+                            label: 'No date',
+                            value: null,
+                            groupValue: selectedDate.value,
+                            onTap: (day) => selectedDate.value = day,
+                          ),
                         ),
-                      ),
-                      Spacing.horizRegular(),
-                      Expanded(
-                        child: _ButtonItem(
-                          label: 'Next Monday',
-                          value: nextMonday,
-                          groupValue: selectedDate.value,
-                          onTap: (day) => selectedDate.value = day,
+                        Spacing.horizRegular(),
+                        Expanded(
+                          child: _ButtonItem(
+                            label: 'Today',
+                            value: DateTime.now(),
+                            groupValue: selectedDate.value,
+                            onTap: (day) => selectedDate.value = day,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  Spacing.vertRegular(),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: _ButtonItem(
-                          label: 'Next Tuesday',
-                          value: nextTuesday,
-                          groupValue: selectedDate.value,
-                          onTap: (day) => selectedDate.value = day,
+                      ],
+                    ),
+                  if (isStart)
+                    Row(
+                      children: [
+                        Expanded(
+                          child: _ButtonItem(
+                            label: 'Today',
+                            value: DateTime.now(),
+                            groupValue: selectedDate.value,
+                            onTap: (day) => selectedDate.value = day,
+                          ),
                         ),
-                      ),
-                      Spacing.horizRegular(),
-                      Expanded(
-                        child: _ButtonItem(
-                          label: 'After 1 week',
-                          value: DateTime.now().add(const Duration(days: 7)),
-                          groupValue: selectedDate.value,
-                          onTap: (day) => selectedDate.value = day,
+                        Spacing.horizRegular(),
+                        Expanded(
+                          child: _ButtonItem(
+                            label: 'Next Monday',
+                            value: nextMonday,
+                            groupValue: selectedDate.value,
+                            onTap: (day) => selectedDate.value = day,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
+                      ],
+                    ),
+                  if (isStart) Spacing.vertRegular(),
+                  if (isStart)
+                    Row(
+                      children: [
+                        Expanded(
+                          child: _ButtonItem(
+                            label: 'Next Tuesday',
+                            value: nextTuesday,
+                            groupValue: selectedDate.value,
+                            onTap: (day) => selectedDate.value = day,
+                          ),
+                        ),
+                        Spacing.horizRegular(),
+                        Expanded(
+                          child: _ButtonItem(
+                            label: 'After 1 week',
+                            value: DateTime.now().add(const Duration(days: 7)),
+                            groupValue: selectedDate.value,
+                            onTap: (day) => selectedDate.value = day,
+                          ),
+                        ),
+                      ],
+                    ),
                 ],
               ),
             ),
@@ -212,8 +241,8 @@ class _NextLastIcon extends StatelessWidget {
 class _ButtonItem extends StatelessWidget {
   final String label;
   final DateTime? groupValue;
-  final DateTime value;
-  final void Function(DateTime) onTap;
+  final DateTime? value;
+  final void Function(DateTime?) onTap;
   const _ButtonItem({
     Key? key,
     required this.label,
@@ -222,7 +251,7 @@ class _ButtonItem extends StatelessWidget {
     required this.onTap,
   }) : super(key: key);
 
-  bool get isSelected => value.day == groupValue?.day;
+  bool get isSelected => value?.day == groupValue?.day;
 
   @override
   Widget build(BuildContext context) {
