@@ -74,6 +74,7 @@ class EmployeeModel extends Equatable {
       name,
       role,
       startDate,
+      endDateParse2,
     ];
   }
 }
