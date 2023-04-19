@@ -1,6 +1,6 @@
 # rti_assignment
 
-Assignment submission for RTI. Link to app [here]('https://drive.google.com/file/d/1SIzu9bQjrt6IpoXrqFooFb9ycm5Go-HY/view?usp=sharing')
+Assignment submission for RTI. Link to app [here](https://drive.google.com/file/d/1SIzu9bQjrt6IpoXrqFooFb9ycm5Go-HY/view?usp=sharing)
 
 ## Summary
 ### State management
