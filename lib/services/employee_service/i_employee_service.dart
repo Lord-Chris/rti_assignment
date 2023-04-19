@@ -6,4 +6,5 @@ abstract class IEmployeeService {
   void addEmployee(EmployeeModel employee);
   void updateEmployee(EmployeeModel employee);
   void deleteEmployee(EmployeeModel employee);
+  void recoverEmployee(EmployeeModel employee);
 }

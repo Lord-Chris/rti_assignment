@@ -3,6 +3,7 @@ import 'package:stacked/stacked.dart';
 import '../../../app/_app.dart';
 import '../../../core/models/employee_model.dart';
 import '../../../services/employee_service/i_employee_service.dart';
+import '../../shared/components/_components.dart';
 
 class EmployeesListViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
@@ -25,6 +26,12 @@ class EmployeesListViewModel extends BaseViewModel {
 
   void deleteEmployee(EmployeeModel employee) {
     _employeeService.deleteEmployee(employee);
+    AppSnackbar.showDeleteSuccess(() => recoverEmployee(employee));
+    notifyListeners();
+  }
+
+  void recoverEmployee(EmployeeModel employee) {
+    _employeeService.recoverEmployee(employee);
     notifyListeners();
   }
 
